@@ -1,6 +1,7 @@
 .results-selector {
-  /* display: inline; */
   width: 38%;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .issue-title-card {
