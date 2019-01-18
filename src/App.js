@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css';
 
+import ResultsSelector from './components/ResultsSelector';
+import IssueViewer from './components/IssueViewer';
+
 class App extends Component {
+  constructor(props) {
+    super(props) 
+    this.state = {
+      issues: []
+    }
+  }
+
+  baseUri = 'https://api.github.com/repos/'
+  defaultRepo = 'rails/rails/issues?page=1&per_page=100'
+
+  componentDidMount() {
+    fetch(`${this.baseUri}${this.defaultRepo}`)
+    .then( response => response.json() )
+    .then( issues => {
+      this.setState( { issues } )
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+            <div className="issue-app-container">
+            <ResultsSelector issues={this.state.issues} />
+            <IssueViewer issues={this.state.issues} />
+          </div>
+        </Router>
       </div>
     );
   }
