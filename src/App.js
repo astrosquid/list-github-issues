@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       issues: [],
       comments: {},
-      repo: 'rails/rails'
+      repo: 'rails/rails',
+      message: 'Loading, please wait...'
     }
   }
 
@@ -24,12 +25,20 @@ class App extends Component {
 
   fetchNewProject = url => {
     fetch(url)
-    .then( response => response.json() )
+    .then( response => {
+      console.log('status:', response.status)
+      if (response.status === 403) {
+        this.setState({ message: "Rate limited by GitHub, please try again later." }, () => {
+          throw new Error("Rate limited by GitHub.")
+        })
+      }
+      return response.json()
+    })
     .then( issues => {
       this.analyzeIssues(issues)
     })
     .catch(function(error) {
-      this.resetRepo()
+      console.log(error)
     });
   }
 
@@ -88,7 +97,7 @@ class App extends Component {
             </div>
           </div>
           <div className="issue-app-container">
-            <ResultsSelector issues={this.state.issues} />
+            <ResultsSelector issues={this.state.issues} message={this.state.message} />
             <IssueViewer issues={this.state.issues} />
           </div>
           </>
