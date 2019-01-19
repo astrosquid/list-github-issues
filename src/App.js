@@ -26,7 +26,6 @@ class App extends Component {
   fetchNewProject = url => {
     fetch(url)
     .then( response => {
-      console.log('status:', response.status)
       if (response.status === 403) {
         this.setState({ message: "Rate limited by GitHub, please try again later." }, () => {
           throw new Error("Rate limited by GitHub.")
