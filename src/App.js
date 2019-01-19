@@ -26,15 +26,23 @@ class App extends Component {
     fetch(url)
     .then( response => response.json() )
     .then( issues => {
-      this.setState( { issues } )
+      this.analyzeIssues(issues)
     })
+    .catch(function(error) {
+      this.resetRepo()
+    });
   }
 
   analyzeIssues = issues => {
-    const contribs = issues.map( issue => {
-      return issue.author_association
-    })
-    console.log(contribs)
+    if (issues.length) {
+      this.setState({ issues })
+    } else {
+      this.resetRepo()
+    }
+  }
+
+  resetRepo = () => {
+    this.setState({ repo: 'rails/rails' }, this.changeUrl(this.state.repo))
   }
 
   changeUrl = repo => {
@@ -58,6 +66,7 @@ class App extends Component {
                 placeholder="e.g. 'rails/rails'" 
                 value={this.state.repo} 
                 onChange={(e) => this.updateRepo(e.target.value)}
+                className="repo-input"
               />
               <button onClick={() => this.changeUrl(this.state.repo)}>Update Repo</button>
             </div>
