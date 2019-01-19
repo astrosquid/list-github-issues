@@ -10,7 +10,7 @@ class App extends Component {
     super(props) 
     this.state = {
       issues: [],
-      comments: [],
+      comments: {},
       repo: 'rails/rails'
     }
   }
@@ -31,6 +31,22 @@ class App extends Component {
     .catch(function(error) {
       this.resetRepo()
     });
+  }
+
+  getComments = () => {
+    const withComments = this.state.issues.filter( issue => issue.comments)
+    const commentUrls = {} 
+    withComments.forEach( issue => {
+      commentUrls[issue.id] = issue.comments_url
+    })
+
+    Object.keys(commentUrls).forEach( id => {
+      fetch(commentUrls[id])
+      .then(response => response.json())
+      .then( comments => {
+        
+      })
+    })
   }
 
   analyzeIssues = issues => {
