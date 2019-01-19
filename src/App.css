@@ -1,3 +1,15 @@
+.nav {
+  height: 7vh;
+  background-color: #4d4d4d;
+}
+
+.nav .home-button {
+  font-size: 2em;
+  color: white;
+  text-decoration: underline;
+  margin-left: 0.5em;
+}
+
 .issue-app-container {
   display: flex;
   flex-direction: row;
