@@ -21,7 +21,7 @@ class ResultsSelector extends React.Component {
   render() {
     return (
       <div className="results-selector">
-        { this.props.issues ? 
+        { this.props.issues.length > 0 ? 
             this.createIssueTitles(this.props.issues)
           :
             <p>Loading, please wait...</p>

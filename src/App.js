@@ -11,16 +11,15 @@ class App extends Component {
     this.state = {
       issues: [],
       comments: [],
-      project: 'rails/rails'
+      repo: 'nostalgic-css/NES.css'
     }
   }
 
   baseUri = 'https://api.github.com/repos/'
-  defaultRepo = 'rails/rails'
   issuesUri = '/issues?page=1&per_page=100'
 
   componentDidMount() {
-    this.fetchNewProject(`${this.baseUri}${this.defaultRepo}${this.issuesUri}`)
+    this.fetchNewProject(`${this.baseUri}${this.state.repo}${this.issuesUri}`)
   }
 
   fetchNewProject = url => {
@@ -38,6 +37,14 @@ class App extends Component {
     console.log(contribs)
   }
 
+  changeUrl = repo => {
+    this.fetchNewProject(`${this.baseUri}${repo}${this.issuesUri}`)
+  }
+
+  updateRepo = repo => {
+    this.setState({ repo })
+  }
+
   render() {
     return (
       <div className="App">
@@ -46,8 +53,13 @@ class App extends Component {
           <div className="nav">
             <Link to="/" className="home-button">Home</Link>
             <div className="url-input-form">
-              <input type="text" placeholder="e.g. 'rails/rails'" />
-              <button onClick={() => this.changeUrl(this.state.urlText)}>Update URL</button>
+              <input 
+                type="text" 
+                placeholder="e.g. 'rails/rails'" 
+                value={this.state.repo} 
+                onChange={(e) => this.updateRepo(e.target.value)}
+              />
+              <button onClick={() => this.changeUrl(this.state.repo)}>Update Repo</button>
             </div>
           </div>
           <div className="issue-app-container">
