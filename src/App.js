@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       issues: [],
       comments: [],
-      repo: 'nostalgic-css/NES.css'
+      repo: 'rails/rails'
     }
   }
 
