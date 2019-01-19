@@ -1,8 +1,6 @@
 import React from 'react'
 import MDReactComponent from 'markdown-react-js'
 
-import CommentsContainer from './CommentsContainer'
-
 import './styles/IssueDetails.css' 
 
 class IssueDetails extends React.Component {
