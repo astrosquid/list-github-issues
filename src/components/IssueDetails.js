@@ -9,7 +9,7 @@ class IssueDetails extends React.Component {
   makeLabels = labels => {
     return labels.map( label => {
       return (
-        <div className="label-badge" key={label.name}>
+        <div className="label-badge" key={label.name} style={ {backgroundColor: `#${label.color}` }}>
           <p>{label.name}</p>
         </div>
       )

@@ -8,7 +8,6 @@ h1 {
 }
 
 .label-badge {
-  border: 1px solid #4d4d4d;
   border-radius: 4px;
   padding: 0;
   margin-right: 1em;
@@ -16,6 +15,7 @@ h1 {
 
 .label-badge p {
   margin: 0.5em;
+  color: rgb(244, 244, 244);
 }
 
 .issue-body {
