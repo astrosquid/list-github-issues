@@ -21,6 +21,7 @@ h1 {
 .issue-body {
   padding: 0.5em;
   margin-right: 1em;
+  margin-bottom: 1em;
   border: 1px solid #4d4d4d;
   border-radius: 5px;
 }
@@ -31,7 +32,6 @@ h1 {
 }
 
 .issue-body > span > pre {
-  /* color: rgb(111, 59, 68); */
   padding: 0.3em;
   margin: 0 1em 0 1em;
   background: rgb(215, 227, 232);

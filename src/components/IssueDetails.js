@@ -26,14 +26,14 @@ class IssueDetails extends React.Component {
         {this.makeLabels(issue.labels)}
       </div>
       <br />
-      <a href={issue.url}>
+      <a href={issue.html_url}>
         See issue on Github
       </a>
-      <p>Opened by <a href={issue.user.url}>{issue.user.login}</a></p>
+      <p>Opened by <a href={issue.user.html_url}>{issue.user.login}</a> {issue.author_association !== 'NONE' ? (`(${issue.author_association.toLowerCase()})`) : null}</p>
       <div className="issue-body">
         <MDReactComponent text={issue.body} />
       </div>
-      <CommentsContainer commentsUrl={issue.comments_url} />
+      
       </>
     )
   }

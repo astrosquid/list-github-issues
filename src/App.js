@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props) 
     this.state = {
-      issues: []
+      issues: [],
+      comments: []
     }
   }
 
@@ -21,7 +22,14 @@ class App extends Component {
     .then( response => response.json() )
     .then( issues => {
       this.setState( { issues } )
+    }, this.analyzeIssues(this.state.issues))
+  }
+
+  analyzeIssues = issues => {
+    const contribs = issues.map( issue => {
+      return issue.author_association
     })
+    console.log(contribs)
   }
 
   render() {
