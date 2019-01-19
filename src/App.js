@@ -10,20 +10,25 @@ class App extends Component {
     super(props) 
     this.state = {
       issues: [],
-      comments: []
+      comments: [],
+      project: 'rails/rails'
     }
   }
 
   baseUri = 'https://api.github.com/repos/'
-  defaultRepo = 'rails/rails/issues'
-  issuesUri = '?page=1&per_page=100'
+  defaultRepo = 'rails/rails'
+  issuesUri = '/issues?page=1&per_page=100'
 
   componentDidMount() {
-    fetch(`${this.baseUri}${this.defaultRepo}${this.issuesUri}`)
+    this.fetchNewProject(`${this.baseUri}${this.defaultRepo}${this.issuesUri}`)
+  }
+
+  fetchNewProject = url => {
+    fetch(url)
     .then( response => response.json() )
     .then( issues => {
       this.setState( { issues } )
-    }, this.analyzeIssues(this.state.issues))
+    })
   }
 
   analyzeIssues = issues => {
@@ -40,6 +45,10 @@ class App extends Component {
           <>
           <div className="nav">
             <Link to="/" className="home-button">Home</Link>
+            <div className="url-input-form">
+              <input type="text" placeholder="e.g. 'rails/rails'" />
+              <button onClick={() => this.changeUrl(this.state.urlText)}>Update URL</button>
+            </div>
           </div>
           <div className="issue-app-container">
             <ResultsSelector issues={this.state.issues} />

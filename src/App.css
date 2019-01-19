@@ -1,6 +1,9 @@
 .nav {
   height: 7vh;
   background-color: #4d4d4d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .nav .home-button {
@@ -13,4 +16,13 @@
 .issue-app-container {
   display: flex;
   flex-direction: row;
+}
+
+.nav .url-input-form input {
+  margin-right: 1em;
+}
+
+.nav .url-input-form {
+  transform: translateY(25%);
+  margin-right: 1em;
 }
