@@ -11,4 +11,4 @@ npm install
 ```
 
 ## Visit the site
-There’s also a version of this site running on Heroku, which you can visit [here](https://list-github-issues.herokuapp.com/).
+There’s also a version of this site running on Heroku, which you can visit [here](https://list-github-issues.herokuapp.com/). Since other people can use it, however, its possible that it will be rate limited by GitHub, since only 60 requests are allowed per hour. 
